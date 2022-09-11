@@ -7,6 +7,9 @@ Expected Arguments
 import sys
 from bs4 import BeautifulSoup
 
+# filename and student roll number are expected input
+# roll number is used to verify if the file uploaded by 
+# the user is correct or not
 filename = sys.argv[1]
 StudentRollNumber = sys.argv[2]
 
@@ -21,7 +24,7 @@ assert ActualRoll == StudentRollNumber, "Identity theft is not a Joke!"
 
 Courses = soup.find_all('ul', {'class': 'subCnt'})
 Duration = None
-f = open('sample.txt', 'w')
+f = open('sample.txt', 'w') #to be deleted
 for sem in Courses:
     for course in sem:
         check = course.find('div', {'class': 'col'})
@@ -32,6 +35,7 @@ for sem in Courses:
             CourseName = course.find('span', {'class': 'col2'}).text
             instructor = course.find('span', {'class': 'col7'}).text
             grade = course.find('span', {'class': 'col8'}).text
+            # temporary
             f.write(f'Course Code: {CourseCode}, Course Name: {CourseName}, ' +
                     f'instructor: {instructor}, grade: {grade}\n')
 
