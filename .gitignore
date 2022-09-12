@@ -2,3 +2,6 @@ src/sample.html
 src/sample.txt
 .idea
 .mypy_cache
+course_feedback/.env
+__pycache__
+Pipfile.lock
