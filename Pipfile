@@ -8,6 +8,7 @@ bs4 = "*"
 django = "*"
 authlib = "*"
 python-dotenv = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

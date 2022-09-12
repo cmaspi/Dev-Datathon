@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'grades',
     'reviews',
     'user',
-    'course'
+    'course',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
