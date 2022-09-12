@@ -11,6 +11,7 @@ python-dotenv = "*"
 transformers = "*"
 fastapi = "*"
 uvicorn = "*"
+tensorflow = "*"
 
 [dev-packages]
 mypy = "*"
