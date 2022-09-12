@@ -31,10 +31,10 @@ for sem in Courses:
         if check is not None:
             Duration = check.text
         else:
-            CourseCode = course.find('span', {'class': 'col1'}).text
-            CourseName = course.find('span', {'class': 'col2'}).text
-            instructor = course.find('span', {'class': 'col7'}).text
-            grade = course.find('span', {'class': 'col8'}).text
+            CourseCode = course.find('span', {'class': 'col1'}).text.strip()
+            CourseName = course.find('span', {'class': 'col2'}).text.strip()
+            instructor = course.find('span', {'class': 'col7'}).text.strip()
+            grade = course.find('span', {'class': 'col8'}).text.strip()
             # temporary
             f.write(f'Course Code: {CourseCode}, Course Name: {CourseName}, ' +
                     f'instructor: {instructor}, grade: {grade}\n')
