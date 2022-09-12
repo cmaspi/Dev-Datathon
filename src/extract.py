@@ -8,7 +8,7 @@ import sys
 from bs4 import BeautifulSoup
 
 # filename and student roll number are expected input
-# roll number is used to verify if the file uploaded by 
+# roll number is used to verify if the file uploaded by
 # the user is correct or not
 filename = sys.argv[1]
 StudentRollNumber = sys.argv[2]
@@ -24,7 +24,7 @@ assert ActualRoll == StudentRollNumber, "Identity theft is not a Joke!"
 
 Courses = soup.find_all('ul', {'class': 'subCnt'})
 Duration = None
-f = open('sample.txt', 'w') #to be deleted
+f = open('sample.txt', 'w')  # to be deleted
 for sem in Courses:
     for course in sem:
         check = course.find('div', {'class': 'col'})

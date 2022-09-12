@@ -2,3 +2,4 @@ src/sample.html
 src/sample.txt
 .idea
 course_feedback/.env
+# .mypy_cache
