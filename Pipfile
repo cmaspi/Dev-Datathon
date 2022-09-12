@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 bs4 = "*"
 django = "*"
+authlib = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
