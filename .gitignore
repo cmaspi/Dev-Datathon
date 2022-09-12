@@ -3,3 +3,4 @@ src/sample.txt
 .idea
 course_feedback/.env
 .mypy_cache
+__pycache__
