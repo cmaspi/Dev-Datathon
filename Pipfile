@@ -8,6 +8,8 @@ bs4 = "*"
 django = "*"
 authlib = "*"
 python-dotenv = "*"
+transformers = "*"
+fastapi = "*"
 
 [dev-packages]
 
