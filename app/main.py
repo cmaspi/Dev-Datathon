@@ -29,5 +29,5 @@ app.add_middleware(
 
 @app.post("/summarize/")
 async def summarize(message: Message):
-    message.output = nlp.generate(prompt=message.input)
+    message.output = nlp.summarize(reviews=message.input)
     return message.output
