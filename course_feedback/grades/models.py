@@ -9,5 +9,5 @@ from course.models import course as c
 class grade(models.Model):
     student = models.ForeignKey(to=s, on_delete=models.CASCADE)
     course = models.ForeignKey(to=c, on_delete=models.CASCADE)
-    grades = [4, 5, 6, 7, 8, 9, 10]
-    grade_ = models.IntegerField(choices=grades, null=True)
+    grades = [(3, "FR"), (4, "D"), (5, "C-"), (6, "C"), (7, "B-"), (8, "B"), (9, "A-"), (10, "A")]
+    grade = models.IntegerField(choices=grades, null=True)
