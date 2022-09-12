@@ -10,6 +10,7 @@ authlib = "*"
 python-dotenv = "*"
 transformers = "*"
 fastapi = "*"
+uvicorn = "*"
 
 [dev-packages]
 mypy = "*"
