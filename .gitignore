@@ -6,3 +6,4 @@ course_feedback/.env
 *.pyc
 Pipfile.lock
 *pyc
+course_feedback/IITH-AIMS-LIVE_Instance.html

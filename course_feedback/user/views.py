@@ -40,13 +40,11 @@ def populate(file, st):
                 course_.save()
 
                 # for grades population
-                print("Bababa", grade, CourseName)
                 dic = {"A+": 10, "A": 10, "A-": 9, "B": 8, "B-": 7, "C": 6, "C-": 5, "D": 4, "FR": 0}
                 if grade in dic:
                     grade = dic[grade]
                 else:
                     grade = None
-                print("Hahahahaha", grade)
                 grade_ = g(student=st, course=course_, grade=grade)
                 grade_.save()
 

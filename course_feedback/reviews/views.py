@@ -6,6 +6,8 @@ import sys
 sys.path.append("../")
 from course.models import course
 from .serializers import Review_serializer
+from user.models import student
+from user.views import email_from_token
 
 
 # Create your views here.
@@ -16,3 +18,17 @@ def return_reviews(request):
     serializer = Review_serializer(reviews, many=True)
     return Response(serializer.data)
 
+
+@api_view(['POST'])
+def create_review(request):
+    course = course.objects.get(name=request.POST["course_name"], offering=request.POST["course_offering"])
+    text = request.POST.get('review')
+    # email = email_from_token(request.POST.get('token'))
+    email = request.POST.get('email')
+    st = student.objects.get(email=email)
+    new_review = course_review(student=st, course=course, review=text)
+    new_review.save()
+
+
+@api_view(['POST'])
+def upvote(request):
