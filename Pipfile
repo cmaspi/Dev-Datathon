@@ -12,6 +12,7 @@ transformers = "*"
 fastapi = "*"
 uvicorn = "*"
 tensorflow = "*"
+types-requests = "*"
 
 [dev-packages]
 mypy = "*"
