@@ -36,3 +36,19 @@ def upvote(request):
     # email = email_from_token(request.POST.get('token'))
     email = request.POST.get('email')
     st = student.objects.get(email=email)
+
+
+@api_view(['POST'])
+def return_top_reviews(request):
+    course = course.objects.get(name=request.POST["course_name"], offering=request.POST["course_offering"])
+    reviews = course.course_review_set.all()
+    serializer = Review_serializer(reviews, many=True)
+
+    sorted(serializer.data,key=lambda k: (k['upvoters_count']))
+    i=0
+    concat_review=''
+    while(i<10 and i<len(serializer.data)):
+        concat_review+=serializer.data[i]['review']
+        i+=1
+
+    return concat_review
