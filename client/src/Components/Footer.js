@@ -1,4 +1,6 @@
 import React from 'react';
+import { Nav, NavLink } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import "./Footer.css"
 
 const Footer = () =>{
@@ -12,15 +14,15 @@ const Footer = () =>{
                     <div className='col'>
                         <h4>Quick Links</h4>
                         <ul className='list-unstyled'>
-                            <li>Home Page</li>
-                            <li>Team</li>
+                            <li> <NavLink to="/home"> Home </NavLink> </li>
+                            <li> <NavLink to="/team"> Team </NavLink> </li>
                         </ul>
                     </div>
                     <div className='col'>
                         <h4>Contact</h4>
                         <ul className='list-unstyled'>
-                            <li>911 911 9110</li>
-                            <li>IIT Hyderabad, Telangana, India</li>
+                            <li> <NavLink href ='https://github.com/cmaspi/Dev-Datathon/issues'> Github </NavLink> </li>
+                            <li> <NavLink href='https://iith.ac.in/'> IIT Hyderabad </NavLink> </li>
                         </ul>
                     </div>
                 </div>
