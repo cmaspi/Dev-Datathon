@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-d
 import { useEffect } from 'react';
 import { gapi } from 'gapi-script';
 
-import { NavBar,Footer } from './Components'
+import { NavBar,Footer, Details } from './Components'
 import { HomePage, About, Contact, Default } from './Components'
 import UserContextProvider from './Components/UserContext'
 
@@ -28,6 +28,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/details" element={<Details />} />
           <Route path="/" element={<Default />} />
         </Switch>
       </Router>

@@ -52,6 +52,7 @@ def populate(file, st):
 
 
 def email_from_token(token):
+    print(token)
     idinfo = id_token.verify_oauth2_token(token, requests.Request(),
                                           "739559908237-bf47v9n6rocl61d6r0hktqm2jh3564t9.apps.googleusercontent.com")
     return idinfo['email']
@@ -76,5 +77,7 @@ def signup(request):
 
 @api_view(['POST'])
 def check_user(request):
-    email = email_from_token(request.POST.get('token'))
-    return student.objects.filter(email=email).exists()
+    # print(request.headers)
+    email = email_from_token(request.headers.get('Authorization'))
+    print(email)
+    return Response({student.objects.filter(email=email).exists()})

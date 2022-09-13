@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useState, useEffect } from 'react'
 
-const Reviews = () => {
+
+const Reviews = ({id}) => {
+  const [reviews, setReviews] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(``)
+  // })
+
   return (
     <div>Reviews</div>
+
   )
 }
 

@@ -26,6 +26,7 @@ export default function UserContextProvider({ children }) {
     setEmail(userEmail);
     setTokenID(userTokenID);
     setSignedIn(true);
+    // console.log(userTokenID)
   };
 
   const logout = () => {

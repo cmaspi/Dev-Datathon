@@ -1,8 +1,32 @@
-import React from 'react'
+import React, {useContext} from 'react'
+
+import {Button, Form} from 'react-bootstrap'
+import { UserContext } from './UserContext'
 
 const WriteReview = () => {
+  const userContext = useContext(UserContext);
+
+  // const 
+  const handleSubmit = (e) => {
+    
+  }
   return (
-    <div>WriteReview</div>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Course Name: </Form.Label>
+        <Form.Control type="text" placeholder="" />
+        <Form.Text className="text-muted">
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formTextArea">
+        <Form.Label>Review</Form.Label>
+        <Form.Control type="text" placeholder="This course is..." />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   )
 }
 

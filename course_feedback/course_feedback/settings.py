@@ -141,6 +141,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True     # optional, as this will log you out 
 SESSION_COOKIE_AGE = 300
 SESSION_SAVE_EVERY_REQUEST = True          # Will prevent from logging you out after 300 seconds
 
+# CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
