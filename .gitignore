@@ -3,5 +3,5 @@ src/sample.txt
 .idea
 .mypy_cache
 course_feedback/.env
-__pycache__
+*.pyc
 Pipfile.lock
