@@ -4,8 +4,6 @@ import { GoogleLogout } from "react-google-login";
 
 import { UserContext } from './UserContext';
 
-const clientId = "739559908237-bf47v9n6rocl61d6r0hktqm2jh3564t9.apps.googleusercontent.com";
-
 
 const Logout = () => {
   const userContext = useContext(UserContext);
@@ -20,7 +18,7 @@ const Logout = () => {
   }
   return (
     <GoogleLogout
-      clientId={clientId}
+      clientId={process.env.REACT_APP_OAUTH_CLIENT_ID}
       buttonText={"Logout"}
       onLogoutSuccess={onSuccess}
     />

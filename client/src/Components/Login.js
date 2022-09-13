@@ -1,12 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
 
-import { Navigate as Redirect } from 'react-router-dom'
-
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from './UserContext';
-
-const clientId = "739559908237-bf47v9n6rocl61d6r0hktqm2jh3564t9.apps.googleusercontent.com";
+import { refreshTokenSetup } from '../refreshToken';
 
 
 const Login = () => {
@@ -15,7 +12,7 @@ const Login = () => {
   const handleResponse = (res) => {
     console.log("Login successfull! ", res.profileObj, res.tokenId);
     userContext.login(res.profileObj.name, res.profileObj.email, res.tokenId);
-    
+    refreshTokenSetup(res);
   }
 
   const customStyle = {
@@ -32,7 +29,7 @@ const Login = () => {
             <div className="text-white text-center rounded border border-dark d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4">
               <div>
                 <GoogleLogin
-                  clientId={clientId}
+                  clientId={process.env.REACT_APP_OAUTH_CLIENT_ID}
                   buttonText="Login"
                   onSuccess={handleResponse}
                   onFailure={handleResponse}
