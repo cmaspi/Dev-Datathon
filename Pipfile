@@ -15,6 +15,7 @@ fastapi = "*"
 uvicorn = "*"
 tensorflow = "*"
 types-requests = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 mypy = "*"

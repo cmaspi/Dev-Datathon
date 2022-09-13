@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'reviews',
     'user',
     'course',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'course_feedback.urls'
@@ -137,3 +140,7 @@ REST_FRAMEWORK = {
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True     # optional, as this will log you out when browser is closed
 SESSION_COOKIE_AGE = 300
 SESSION_SAVE_EVERY_REQUEST = True          # Will prevent from logging you out after 300 seconds
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
