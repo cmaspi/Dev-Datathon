@@ -38,5 +38,5 @@ def get_response(url: str, text: str) -> dict:
 
 if __name__ == '__main__':
     text = 'This is a piece of text that should be summarized by this app'
-    url = 'http://0.0.0.0:1234/summarize/'    
+    url = 'http://0.0.0.0:1234/summarize/' 
     print(get_response(url, text))
