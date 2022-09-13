@@ -5,3 +5,4 @@ src/sample.txt
 course_feedback/.env
 __pycache__
 Pipfile.lock
+*pyc
