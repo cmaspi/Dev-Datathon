@@ -32,3 +32,7 @@ def create_review(request):
 
 @api_view(['POST'])
 def upvote(request):
+    review_id = request.POST.get('id')
+    # email = email_from_token(request.POST.get('token'))
+    email = request.POST.get('email')
+    st = student.objects.get(email=email)
