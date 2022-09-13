@@ -72,3 +72,9 @@ def signup(request):
     user.save()
     populate(grade_card, user)
     return Response({0})
+
+
+@api_view(['POST'])
+def check_user(request):
+    email = email_from_token(request.POST.get('token'))
+    return student.objects.filter(email=email).exists()
