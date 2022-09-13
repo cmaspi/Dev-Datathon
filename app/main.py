@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from app.nlp import NLP
+from nlp import NLP
+import uvicorn
 
 
 class Message(BaseModel):
     input: str
-    output: str | None = None
 
 
 app = FastAPI()
@@ -29,5 +29,18 @@ app.add_middleware(
 
 @app.post("/summarize/")
 async def summarize(message: Message):
-    message.output = nlp.summarize(reviews=message.input)
-    return message.output
+    success = True
+    try:
+        summary = nlp.summarize(reviews=message.input)
+    except Exception:
+        summary = 'Couldn\'t generate summary'
+        success = False
+    finally:
+        return {
+                "success": success,
+                "summary": summary
+                }
+
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=1234, host='0.0.0.0')

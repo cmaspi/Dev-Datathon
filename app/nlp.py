@@ -8,4 +8,4 @@ class NLP:
 
     def summarize(self, reviews: str, max_length=100, min_length=5) -> str:
         res = self.model(reviews, max_length=max_length, min_length=min_length)
-        return res
+        return res[0]['summary_text']
