@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom'
+import { useEffect } from 'react';
 import { gapi } from 'gapi-script';
 
-import LoginButton from "./components/Login"
-import LogoutButton from "./components/Logout"
-
-const clientId = "739559908237-bf47v9n6rocl61d6r0hktqm2jh3564t9.apps.googleusercontent.com";
+import { NavBar } from './Components'
+import { HomePage, About, Contact, Default } from './Components'
+import UserContextProvider from './Components/UserContext'
 
 function App() {
 
   useEffect(() => {
     const initClient = () => {
-      gapi.client.init({
-        clientId: clientId,
+      gapi.auth2.init({
+        clientId: process.env.REACT_APP_OAUTH_CLIENT_ID,
         scope: ""
       })
     }
@@ -20,10 +21,18 @@ function App() {
   })
 
   return (
-    <div className="App">
-      <LoginButton />
-      <LogoutButton />
-    </div>
+    <UserContextProvider>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<Default />} />
+        </Switch>
+      </Router>
+    </UserContextProvider>
+
   );
 }
 
