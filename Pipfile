@@ -6,9 +6,8 @@ name = "pypi"
 [packages]
 bs4 = "*"
 django = "*"
-authlib = "*"
-python-dotenv = "*"
 djangorestframework = "*"
+google-auth = "*"
 
 [dev-packages]
 
