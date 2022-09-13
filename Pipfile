@@ -8,6 +8,10 @@ bs4 = "*"
 django = "*"
 djangorestframework = "*"
 google-auth = "*"
+authlib = "*"
+python-dotenv = "*"
+transformers = "*"
+fastapi = "*"
 
 [dev-packages]
 
