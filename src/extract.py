@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 filename = sys.argv[1]
 StudentRollNumber = sys.argv[2]
 
-with open(f'{filename}') as fp:
+with open(filename) as fp:
     soup = BeautifulSoup(fp, 'html.parser')
 
 StudentInfo = soup.find('div', {'class': 'studentInfoDiv inlineBlock'})
