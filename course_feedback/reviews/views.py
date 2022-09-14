@@ -11,6 +11,7 @@ from user.views import email_from_token
 from google.auth.transport import requests
 from google.oauth2 import id_token
 import requests
+import json
 
 
 # Create your views here.
@@ -19,7 +20,11 @@ def return_reviews(request):
     email = email_from_token(request.headers.get('Authorization'))
     # email = request.POST.get('email')
     if student.objects.filter(email=email).exists():
-        course_ = course.objects.get(id=request.POST.get('id'))
+        # print('views : ', request.body['id'])
+        request_body = json.loads(request.body.decode('utf-8'))
+        # print('req body is ', request_body['id'])
+        course_ = course.objects.get(id=request_body['id'])
+        # course_ = course.objects.get(id=request.POST.get('id'))
         reviews = course_.course_review_set.all()
         serializer = Review_serializer(reviews, many=True)
         return Response(serializer.data)
