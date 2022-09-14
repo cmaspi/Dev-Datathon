@@ -1,3 +1,5 @@
+import json
+from user.models import student as s
 from rest_framework.decorators import api_view
 from .models import course
 from .serializers import course_serializer, summary_grade_serializer
@@ -6,7 +8,6 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 import sys
 sys.path.append('../')
-from user.models import student as s
 
 
 # Create your views here.
@@ -27,7 +28,10 @@ def stuff(request):
     email = email_from_token(request.headers.get('Authorization'))
     # email = request.POST.get('email')
     if s.objects.filter(email=email).exists():
-        tmp = course.objects.get(id=request.POST.get('id'))
+        # print('views : ', request.body['id'])
+        request_body = json.loads(request.body.decode('utf-8'))
+        # print('req body is ', request_body['id'])
+        tmp = course.objects.get(id=request_body['id'])
         serializer = summary_grade_serializer(tmp)
         return Response(serializer.data)
     else:
