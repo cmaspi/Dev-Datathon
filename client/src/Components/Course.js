@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import { useLocation } from "react-router-dom";
+import Reviews from "./Reviews";
 import Summary from "./Summary";
 
 const Course = () => {
@@ -12,6 +12,9 @@ const Course = () => {
   return (
     <>
       <Summary courseId={location.state.courseId} />
+      <br />
+      <h3>Reviews</h3>
+      <Reviews courseId={location.state.courseId} />
     </>
   );
 };

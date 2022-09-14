@@ -4,6 +4,7 @@ import Course from "./Course";
 import Reviews from "./Reviews";
 import { UserContext } from "./UserContext";
 import Card from "react-bootstrap/Card";
+import { Container } from "react-bootstrap";
 
 const CoursePage = () => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
@@ -39,7 +40,10 @@ const CoursePage = () => {
       {coursesList.map((course) => {
         return (
           <>
-            <div key={course.id}>
+            <Container
+              key={course.id}
+              style={{ display: "flex", flexWrap: "wrap" }}
+            >
               <Link
                 to={`/courses/${course.id}`}
                 state={{ courseId: course.id }}
@@ -61,8 +65,7 @@ const CoursePage = () => {
                   </Card.Body>
                 </Card>
               </Link>
-              <br></br>
-            </div>
+            </Container>
           </>
         );
       })}

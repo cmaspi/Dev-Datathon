@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 const Summary = ({ courseId }) => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
   const [summary, setSummary] = useState("This course is awesome");
+  const [grade, setGrade] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("tokenId");
@@ -21,13 +22,25 @@ const Summary = ({ courseId }) => {
       .then((obj) => {
         console.log(obj);
         setSummary(obj.body["review"]);
+        setGrade(obj.body["median_grade"]);
       })
       .catch(() => {
         console.log("error");
       });
-  });
+  }, []);
 
-  return <>{summary}</>;
+  return (
+    <>
+      <div>
+        <h3>Summary</h3>
+        {summary}
+      </div>
+      <br />
+
+      <h3>Median Grade</h3>
+      {grade}
+    </>
+  );
 };
 
 export default Summary;
