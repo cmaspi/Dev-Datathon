@@ -12,7 +12,7 @@ const Logout = () => {
     console.log("Logged Out!");
     userContext.logout();
   }
-  if(!userContext || userContext.name == '')
+  if(!userContext || userContext.name === '')
   {
     return <Redirect to="/"/>
   }

@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-d
 import { useEffect } from 'react';
 import { gapi } from 'gapi-script';
 
-import { NavBar,Footer, Details } from './Components'
-import { HomePage, About, Contact, Default } from './Components'
+import { NavBar, Footer, Details, HomePage, About, Contact, Default, CoursePage, Reviews } from './Components'
 import UserContextProvider from './Components/UserContext'
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
     }
 
     gapi.load('client:auth2', initClient);
-  })
+  }, [])
 
   return (
     <UserContextProvider>
@@ -29,6 +28,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/details" element={<Details />} />
+          {/* <Route path={`courses/:id`} element={<Reviews />} /> */}
+          <Route path="/courses" element={<CoursePage />} />
           <Route path="/" element={<Default />} />
         </Switch>
       </Router>

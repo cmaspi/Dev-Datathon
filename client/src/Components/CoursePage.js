@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Link, Navigate as Redirect } from 'react-router-dom'
+import Reviews from './Reviews';
 import { UserContext } from './UserContext'
 
 const CoursePage = () => {
@@ -9,39 +10,51 @@ const CoursePage = () => {
   const [coursesList, setCoursesList] = useState([]);
 
   useEffect(() => {
-    console.log(userContext.tokenId);
+    const token = localStorage.getItem('tokenId');
+    console.log("Inside coursepage/js", token);
 
-    fetch(`${baseURL}user/check/`, {
+    fetch(`${baseURL}courses/`, {
       method: "POST",
       headers: {
-        Authorization: userContext.tokenId,
+        Authorization: token,
         "Content-Type": "application/json",
       }
     })
       .then(r => r.json().then(data => ({ status: r.status, body: data })))
       .then(obj => {
-        console.log(obj);
-        setCoursesList(obj);
+        console.log("Here", obj);
+        console.log(typeof obj)
+        setCoursesList(obj.body);
       })
       .catch(() => {
         console.log("error");
       })
-  });
+  }, []);
 
   return (
     <>
       <div>CoursePage</div>
       {
-        coursesList.map(course => {
-          return (
-            <div key={course.id}>
-              <Link to={`${baseURL}courses/${course.course_id}`}>
-                {course.course_id}
-              </Link>
-              {course.course_name}
-            </div>
-          )
-        })
+        // coursesList.map(course => {
+        //   return (
+        //     <>
+        //       <div key={course.id}>
+        //         {/* <Link to={{
+        //           pathname: `${course.id}`,
+        //           state: "Hello"
+        //         }}>
+        //           {course.code}
+        //         </Link> */}
+        //         <Reviews id={course.id} />
+        //         {course.name}
+        //         <br></br>
+        //         {course.offering}
+        //       </div>
+        //     </>
+        //   )
+        // })
+        coursesList.length>0 && 
+        <Reviews id={coursesList[0].id} />
       }
     </>
 

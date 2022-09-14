@@ -10,9 +10,6 @@ const HomePage = () => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
   const userContext = useContext(UserContext);
 
-  useEffect(() => {
-    
-  })
 
   
   return (

@@ -1,40 +1,45 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Link, Navigate as Redirect } from 'react-router-dom'
+import { Link, Navigate as Redirect, useLocation } from 'react-router-dom'
 import { UserContext } from './UserContext'
 
-const Reviews = () => {
+const Reviews = (props) => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
   const userContext = useContext(UserContext);
-
+  const location = useLocation();
   const [reviewsList, setReviewsList] = useState(null);
-  const [summary, setSummary] = useState('');
-  const [grade, setGrade] = useState('');
+  const [summary, setSummary] = useState('This course is awesome');
+  const [grade, setGrade] = useState('Grading is worst');
 
+
+  console.log('url is : ', props);
+  const token = localStorage.getItem('tokenId');
   useEffect(() => {
-
-    fetch(`${baseURL}reviews/`, {
+    fetch(`${baseURL}review/`, {
       method: "POST",
+      body: {
+        id: props.id
+      },
       headers: {
-        Authorization: userContext.tokenId,
+        Authorization: token,
         "Content-Type": "application/json",
       }
     })
       .then(r => r.json().then(data => ({ status: r.status, body: data })))
       .then(obj => {
         console.log(obj);
-        setReviewsList(obj);
+        setReviewsList(obj.body);
       })
       .catch(() => {
         console.log("error");
       })
-  });
+  }, []);
 
   useEffect(() => {
 
     fetch(`${baseURL}summary/`, {
       method: "POST",
       headers: {
-        Authorization: userContext.tokenId,
+        Authorization: token,
         "Content-Type": "application/json",
       }
     })
@@ -46,14 +51,17 @@ const Reviews = () => {
       .catch(() => {
         console.log("error");
       })
-  });
+  }, []);
 
   useEffect(() => {
 
     fetch(`${baseURL}grade/`, {
       method: "POST",
+      // body: {
+      //   id: 
+      // }
       headers: {
-        Authorization: userContext.tokenId,
+        Authorization: token,
         "Content-Type": "application/json",
       }
     })
@@ -65,7 +73,7 @@ const Reviews = () => {
       .catch(() => {
         console.log("error");
       })
-  });
+  }, []);
 
   return (
     <>

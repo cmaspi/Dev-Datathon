@@ -6,8 +6,8 @@ export default function UserContextProvider({ children }) {
   const [name, setName] = useState(localStorage.getItem('name') || '');
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
   const [tokenID, setTokenID] = useState(localStorage.getItem('tokenid') || '');
-  const [signedIn, setSignedIn] = useState(!!localStorage.getItem('tokenid'));
-  const [exists, setExists] = useState(!!localStorage.getItem('exists'));
+  const [signedIn, setSignedIn] = useState(localStorage.getItem('tokenid'));
+  const [exists, setExists] = useState(localStorage.getItem('exists'));
 
   // Allow change in localstorage to cause an update to context variables
   useEffect(() => {
