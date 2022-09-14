@@ -16,9 +16,9 @@ const Reviews = (props) => {
   useEffect(() => {
     fetch(`${baseURL}review/`, {
       method: "POST",
-      body: {
+      body: JSON.stringify({
         id: props.id
-      },
+      }),
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -38,6 +38,9 @@ const Reviews = (props) => {
 
     fetch(`${baseURL}summary/`, {
       method: "POST",
+      body: JSON.stringify({
+        id: props.id
+      }),
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
@@ -57,9 +60,9 @@ const Reviews = (props) => {
 
     fetch(`${baseURL}grade/`, {
       method: "POST",
-      // body: {
-      //   id: 
-      // }
+      body: JSON.stringify({
+        id: props.id
+      }),
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
