@@ -8,7 +8,7 @@ class Review_serializer(serializers.ModelSerializer):
 
     class Meta:
         model = course_review
-        fields = ['id', 'student', 'course', 'review', 'upvoters_count', 'downvoters_count']
+        fields = ['id', 'student', 'review', 'upvoters_count', 'downvoters_count']
 
     def get_upvoters_count(self, obj):
         return obj.upvoters.count()
