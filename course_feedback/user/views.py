@@ -69,9 +69,9 @@ def signup(request):
     try:
         email = email_from_token(request.headers.get('Authorization'))
         # email = request.POST.get('email')
-        request_body = json.loads(request.body.decode('utf-8'))
-        grade_card = request_body['grade_card']
-        # grade_card = request.FILES['grade_card']
+        # request_body = json.loads(request.body.decode('utf-8'))
+        # grade_card = request_body['grade_card']
+        grade_card = request.FILES['grade_card']
         user = student(email=email, grade_card=grade_card)
         user.save()
         populate(grade_card, user)
