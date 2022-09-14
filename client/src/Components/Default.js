@@ -6,9 +6,9 @@ import { UserContext } from './UserContext'
 
 const Default = () => {
   const userContext = useContext(UserContext);
-  if(userContext && userContext.name !== '')
+  if(userContext && userContext.name !== '' && userContext.exists)
   {
-    return <Redirect to="/home"/>
+    return <Redirect to="/courses"/>
   }
   return (
     <>
