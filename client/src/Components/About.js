@@ -13,6 +13,7 @@ const About = () => {
         <h2>Our Team</h2>
       </center>
       <div class="row">
+
         <div class="column">
           <div class="card">
             <div class="container">
@@ -49,6 +50,9 @@ const About = () => {
           </div>
         </div>
 
+      </div>
+
+      <div class="row">
         <div class="column">
           <div class="card">
             <div class="container">
