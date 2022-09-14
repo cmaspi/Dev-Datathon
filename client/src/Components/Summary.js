@@ -7,7 +7,7 @@ const Summary = ({ courseId }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("tokenId");
-    fetch(`${baseURL}summary/`, {
+    fetch(`${baseURL}courses/summary/`, {
       method: "POST",
       body: JSON.stringify({
         id: courseId,
@@ -20,14 +20,14 @@ const Summary = ({ courseId }) => {
       .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
       .then((obj) => {
         console.log(obj);
-        setSummary(obj.body);
+        setSummary(obj.body["review"]);
       })
       .catch(() => {
         console.log("error");
       });
-  }, []);
+  });
 
-  return <div>Summary</div>;
+  return <>{summary}</>;
 };
 
 export default Summary;

@@ -7,9 +7,11 @@ const Course = () => {
   const location = useLocation();
   console.log(location);
 
+  console.log("course.js pe hai");
+
   return (
     <>
-      <Summary>courseId={location.state.courseId}</Summary>
+      <Summary courseId={location.state.courseId} />
     </>
   );
 };

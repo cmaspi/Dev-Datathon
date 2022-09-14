@@ -40,7 +40,10 @@ const CoursePage = () => {
         return (
           <>
             <div key={course.id}>
-              <Link to="/onecourse" state={{ courseId: course.id }}>
+              <Link
+                to={`/courses/${course.id}`}
+                state={{ courseId: course.id }}
+              >
                 <Card
                   bg={"primary"}
                   key={course.id}
