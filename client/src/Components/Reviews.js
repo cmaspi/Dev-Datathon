@@ -32,7 +32,7 @@ const Reviews = ({ courseId }) => {
         return (
           <>
             <Card
-              bg={"secondary"}
+              bg={"primary"}
               key={review.id}
               text={"dark"}
               style={{ width: "48rem" }}

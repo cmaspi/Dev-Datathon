@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Reviews from "./Reviews";
 import Summary from "./Summary";
+import {Container} from "react-bootstrap";
 
 const Course = () => {
   const location = useLocation();
@@ -11,10 +12,13 @@ const Course = () => {
 
   return (
     <>
-      <Summary courseId={location.state.courseId} />
-      <br />
-      <h3>Reviews</h3>
-      <Reviews courseId={location.state.courseId} />
+        <Container style={{display: 'center'}}>
+            <Summary courseId={location.state.courseId} />
+
+        <h3>Reviews</h3>
+        <Reviews courseId={location.state.courseId} />
+        </Container>
+
     </>
   );
 };

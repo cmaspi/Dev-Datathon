@@ -2,8 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, Navigate as Redirect, useLocation } from "react-router-dom";
 import Course from "./Course";
 import Reviews from "./Reviews";
-import Card from "react-bootstrap/Card";
-import { Container } from "react-bootstrap";
+import { Container, Card, CardGroup, Row, Col } from "react-bootstrap";
 
 const CoursePage = () => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
@@ -25,7 +24,7 @@ const CoursePage = () => {
       .then((obj) => {
         console.log("Here", obj);
         console.log(typeof obj);
-        setCoursesList(obj.body.slice(0, 4));
+        setCoursesList(obj.body);
       })
       .catch(() => {
         console.log("error");
@@ -34,13 +33,16 @@ const CoursePage = () => {
 
   return (
     <>
-      <div>CoursePage</div>
+      <Row xs={1} md={6} className="g-4">
+
+
       {coursesList.map((course) => {
         return (
           <>
+              <Col>
             <Container
               key={course.id}
-              style={{ display: "flex", flexWrap: "wrap" }}
+              style={{textDecoration:'none'}}
             >
               <Link
                 to={`/courses/${course.id}`}
@@ -50,23 +52,24 @@ const CoursePage = () => {
                   bg={"primary"}
                   key={course.id}
                   text={"dark"}
-                  style={{ width: "18rem", cursor: "pointer" }}
+                  style={{ width: "16rem", cursor: "pointer" }}
                   className="mb-2"
                 >
-                  <Card.Header>{course.id}</Card.Header>
+                  <Card.Header>{course.code}</Card.Header>
                   <Card.Body>
-                    <Card.Title>{course.code} </Card.Title>
+                    <Card.Title>{course.name} </Card.Title>
                     <Card.Text>
-                      {course.name}
                       {course.offering}
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Link>
             </Container>
+                  </Col>
           </>
         );
       })}
+         </Row>
     </>
   );
 };

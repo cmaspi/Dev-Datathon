@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useContext, useEffect } from "react";
+import {Container} from "react-bootstrap";
 
 const Summary = ({ courseId }) => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
