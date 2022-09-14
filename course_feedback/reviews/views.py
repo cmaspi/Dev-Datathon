@@ -8,28 +8,36 @@ from course.models import course
 from .serializers import Review_serializer
 from user.models import student
 from user.views import email_from_token
+from google.auth.transport import requests
+from google.oauth2 import id_token
 
 
 # Create your views here.
 @api_view(['POST'])
 def return_reviews(request):
-    course = course.objects.get(name=request.POST["course_name"],
-                                offering=request.POST["course_offering"])
-    reviews = course.course_review_set.all()
-    serializer = Review_serializer(reviews, many=True)
-    return Response(serializer.data)
+    email = email_from_token(request.headers.get('Authorization'))
+    if student.objects.filter(email=email).exists():
+        course = course.objects.get(id=request.POST.get('id'))
+        reviews = course.course_review_set.all()
+        serializer = Review_serializer(reviews, many=True)
+        return Response(serializer.data)
+    else:
+        return Response({1})
 
 
 @api_view(['POST'])
 def create_review(request):
-    course = course.objects.get(name=request.POST["course_name"],
-                                offering=request.POST["course_offering"])
-    text = request.POST.get('review')
-    # email = email_from_token(request.POST.get('token'))
-    email = request.POST.get('email')
-    st = student.objects.get(email=email)
-    new_review = course_review(student=st, course=course, review=text)
-    new_review.save()
+    email = email_from_token(request.headers.get('Authorization'))
+    if student.objects.filter(email=email).exists():
+        course = course.objects.get(id=request.POST.get('id'))
+        text = request.POST.get('review')
+        # email = request.POST.get('email')
+        st = student.objects.get(email=email)
+        new_review = course_review(student=st, course=course, review=text)
+        new_review.save()
+        return Response({0})
+    else:
+        return Response({1})
 
 
 @api_view(['POST'])
