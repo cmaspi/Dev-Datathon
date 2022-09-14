@@ -18,7 +18,6 @@ import {
   CoursePage,
   Reviews,
 } from "./Components";
-import UserContextProvider from "./Components/UserContext";
 import Course from "./Components/Course";
 
 function App() {
@@ -34,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <UserContextProvider>
+    <>
       <Router>
         <NavBar />
         <Switch>
@@ -48,7 +47,7 @@ function App() {
         </Switch>
       </Router>
       {/* <Footer /> */}
-    </UserContextProvider>
+    </>
   );
 }
 

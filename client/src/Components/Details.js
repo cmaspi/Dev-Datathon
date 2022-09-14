@@ -1,10 +1,7 @@
-import React, {useState, useContext, useRef} from 'react'
-
-import { UserContext } from './UserContext'
+import React, { useState, useContext, useRef } from "react";
 
 const Details = () => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
-  const userContext = useContext(UserContext);
 
   const [fileName, setFileName] = useState(null);
 
@@ -14,8 +11,7 @@ const Details = () => {
     inputRef.current?.click();
   };
   const handleDisplayFileDetails = () => {
-    inputRef.current?.files &&
-      setFileName(inputRef.current.files[0].name);
+    inputRef.current?.files && setFileName(inputRef.current.files[0].name);
   };
 
   const handleSubmit = () => {
@@ -38,8 +34,7 @@ const Details = () => {
     //       return <Redirect to="/details" />
     //     }
     //   })
-
-  }
+  };
   return (
     <div className="m-3" onSubmit={handleSubmit}>
       <label className="mx-3">Choose file:</label>
@@ -51,13 +46,12 @@ const Details = () => {
       />
       <button
         onClick={handleUpload}
-        className={`btn btn-outline-${fileName ? "success" : "primary"
-          }`}
+        className={`btn btn-outline-${fileName ? "success" : "primary"}`}
       >
         {fileName ? fileName : "Upload"}
       </button>
     </div>
   );
-}
+};
 
-export default Details
+export default Details;

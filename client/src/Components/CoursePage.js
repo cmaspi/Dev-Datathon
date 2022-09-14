@@ -2,13 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, Navigate as Redirect, useLocation } from "react-router-dom";
 import Course from "./Course";
 import Reviews from "./Reviews";
-import { UserContext } from "./UserContext";
 import Card from "react-bootstrap/Card";
 import { Container } from "react-bootstrap";
 
 const CoursePage = () => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
-  const userContext = useContext(UserContext);
 
   const [coursesList, setCoursesList] = useState([]);
 
