@@ -1,7 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { Link, Navigate as Redirect } from 'react-router-dom'
-import Reviews from './Reviews';
-import { UserContext } from './UserContext'
+import React, { useState, useContext, useEffect } from "react";
+import { Link, Navigate as Redirect } from "react-router-dom";
+import Course from "./Course";
+import Reviews from "./Reviews";
+import { UserContext } from "./UserContext";
+import Card from "react-bootstrap/Card";
 
 const CoursePage = () => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
@@ -10,7 +12,7 @@ const CoursePage = () => {
   const [coursesList, setCoursesList] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('tokenId');
+    const token = localStorage.getItem("tokenId");
     console.log("Inside coursepage/js", token);
 
     fetch(`${baseURL}courses/`, {
@@ -18,47 +20,56 @@ const CoursePage = () => {
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
-      }
+      },
     })
-      .then(r => r.json().then(data => ({ status: r.status, body: data })))
-      .then(obj => {
+      .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
+      .then((obj) => {
         console.log("Here", obj);
-        console.log(typeof obj)
-        setCoursesList(obj.body);
+        console.log(typeof obj);
+        setCoursesList(obj.body.slice(0, 4));
       })
       .catch(() => {
         console.log("error");
-      })
+      });
   }, []);
 
   return (
     <>
       <div>CoursePage</div>
-      {
-        // coursesList.map(course => {
-        //   return (
-        //     <>
-        //       <div key={course.id}>
-        //         {/* <Link to={{
-        //           pathname: `${course.id}`,
-        //           state: "Hello"
-        //         }}>
-        //           {course.code}
-        //         </Link> */}
-        //         <Reviews id={course.id} />
-        //         {course.name}
-        //         <br></br>
-        //         {course.offering}
-        //       </div>
-        //     </>
-        //   )
-        // })
-        coursesList.length>0 && 
-        <Reviews id={coursesList[0].id} />
-      }
+      {coursesList.map((course) => {
+        return (
+          <>
+            <div key={course.id}>
+              <Link
+                to={{
+                  pathname: `/courses/${course.id}`,
+                  query: { a: "hello" },
+                }}
+              >
+                <Card
+                  bg={"primary"}
+                  key={course.id}
+                  text={"dark"}
+                  style={{ width: "18rem", cursor: "pointer" }}
+                  className="mb-2"
+                >
+                  <Card.Header>{course.id}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>{course.code} </Card.Title>
+                    <Card.Text>
+                      {course.name}
+                      {course.offering}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
+              <br></br>
+            </div>
+          </>
+        );
+      })}
     </>
-
-  )
-}
+  );
+};
 
 export default CoursePage;

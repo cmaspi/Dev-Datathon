@@ -1,23 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom'
-import { useEffect } from 'react';
-import { gapi } from 'gapi-script';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes as Switch,
+} from "react-router-dom";
+import { useEffect } from "react";
+import { gapi } from "gapi-script";
 
-import { NavBar, Footer, Details, HomePage, About, Contact, Default, CoursePage, Reviews } from './Components'
-import UserContextProvider from './Components/UserContext'
+import {
+  NavBar,
+  Footer,
+  Details,
+  HomePage,
+  About,
+  Contact,
+  Default,
+  CoursePage,
+  Reviews,
+} from "./Components";
+import UserContextProvider from "./Components/UserContext";
+import Course from "./Components/Course";
 
 function App() {
-
   useEffect(() => {
     const initClient = () => {
       gapi.auth2.init({
         clientId: process.env.REACT_APP_OAUTH_CLIENT_ID,
-        scope: ""
-      })
-    }
+        scope: "",
+      });
+    };
 
-    gapi.load('client:auth2', initClient);
-  }, [])
+    gapi.load("client:auth2", initClient);
+  }, []);
 
   return (
     <UserContextProvider>
@@ -28,14 +42,13 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/details" element={<Details />} />
-          {/* <Route path={`courses/:id`} element={<Reviews />} /> */}
-          <Route path="/courses" element={<CoursePage />} />
+          <Route exact path="courses/:id" element={<Course />} />
+          <Route exact path="/courses" element={<CoursePage />} />
           <Route path="/" element={<Default />} />
         </Switch>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </UserContextProvider>
-
   );
 }
 
