@@ -1,5 +1,7 @@
 import React from 'react'
 import "./About.css"
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
 
 const About = () => {
   return (
@@ -9,86 +11,68 @@ const About = () => {
         <p>Text about ourselves. Lorem ipsum ipsum da lorem wa</p>
         <p>Just some blah blah text. Needs to be changed anyways</p>
       </div>
+
       <center>
         <h2>Our Team</h2>
       </center>
-      <div class="row">
-
-        <div class="column">
-          <div class="card">
-            <div class="container">
-              <h2>Chirag Mehta</h2>
-              <p class="title">AI20BTECH11006</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>ai20btech11006@iith.ac.in</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="container">
-              <h2>Dishank Jain</h2>
-              <p class="title">AI20BTECH11011</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>ai20btech11011@iith.ac.in</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="container">
-              <h2>Pranav Sai</h2>
-              <p class="title">AI20BTECH11004</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>ai20btech11004@iith.ac.in</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="column">
-          <div class="card">
-            <div class="container">
-              <h2>Umesh Kalvakuntla</h2>
-              <p class="title">CS20BTECH11024</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>cs20btech11024@iith.ac.in</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="container">
-              <h2>Yashas Tadikamalla</h2>
-              <p class="title">AI20BTECH11027</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>ai20btech11027@iith.ac.in</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="container">
-              <h2>Vaibhav Ramola</h2>
-              <p class="title">EP20BTECH110025</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>ep20btech11025@iith.ac.in</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CardGroup>
+        <Card>
+          <Card.Body>
+            <Card.Title>Chirag Mehta</Card.Title>
+            <Card.Text>
+              AI20BTECH11006 <br></br>
+              Email: ai20btech11006@iith.ac.in
+              </Card.Text>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+            <Card.Title>Dishank Jain</Card.Title>
+            <Card.Text>
+              AI20BTECH11011 <br></br>
+              Email: ai20btech11011@iith.ac.in
+              </Card.Text>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+            <Card.Title>Pranav Sai</Card.Title>
+            <Card.Text>
+              AI20BTECH11004 <br></br>
+              Email: ai20btech11004@iith.ac.in
+              </Card.Text>
+          </Card.Body>
+        </Card>
+      </CardGroup>
+      <CardGroup>
+        <Card>
+          <Card.Body>
+            <Card.Title>Umesh Kalvakuntla</Card.Title>
+            <Card.Text>
+              AI20BTECH11024 <br></br>
+              Email: cs20btech11024@iith.ac.in
+              </Card.Text>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+            <Card.Title>Yashas Tadikamalla</Card.Title>
+            <Card.Text>
+              AI20BTECH11027 <br></br>
+              Email: ai20btech11027iith.ac.in
+              </Card.Text>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+            <Card.Title>Vaibhav Ramola</Card.Title>
+            <Card.Text>
+              EP20BTECH11025 <br></br>
+              Email: ep20btech11025@iith.ac.in
+              </Card.Text>
+          </Card.Body>
+        </Card>
+      </CardGroup>
 
     </div>
   )
