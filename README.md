@@ -39,3 +39,5 @@ The reviews are summarized using our summarizer api which runs on Uvicorn server
 
 ## For testing purposes
 For testing purposes, the tester is requested to contact the developer to register themselves on the backend. User signup has not been implemented on frontend. Thus this step is required. Currently, reviews have been added only for the course AI3000: Reinforcement Learning. Please click on that to see reviews.
+
+After logging in, go to http://127.0.0.1:3000/courses/ Ignore the signup page on the frontend.
