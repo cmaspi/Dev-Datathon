@@ -4,4 +4,5 @@ from .views import *
 
 urlpatterns = [
     path('', all_courses),
+    path('summary/', stuff)
 ]
