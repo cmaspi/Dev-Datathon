@@ -42,7 +42,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/details" element={<Details />} />
-          <Route exact path="courses/:id" element={<Course />} />
+          <Route exact path="/onecourse" element={<Course />} />
           <Route exact path="/courses" element={<CoursePage />} />
           <Route path="/" element={<Default />} />
         </Switch>

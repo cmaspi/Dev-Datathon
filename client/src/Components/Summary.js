@@ -1,6 +1,7 @@
 import React from "react";
+import { useState, useContext, useEffect } from "react";
 
-const Summary = () => {
+const Summary = ({ courseId }) => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
   const [summary, setSummary] = useState("This course is awesome");
 
@@ -9,7 +10,7 @@ const Summary = () => {
     fetch(`${baseURL}summary/`, {
       method: "POST",
       body: JSON.stringify({
-        id: props.id,
+        id: courseId,
       }),
       headers: {
         Authorization: token,

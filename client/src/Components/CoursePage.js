@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, Navigate as Redirect } from "react-router-dom";
+import { Link, Navigate as Redirect, useLocation } from "react-router-dom";
 import Course from "./Course";
 import Reviews from "./Reviews";
 import { UserContext } from "./UserContext";
@@ -40,12 +40,7 @@ const CoursePage = () => {
         return (
           <>
             <div key={course.id}>
-              <Link
-                to={{
-                  pathname: `/courses/${course.id}`,
-                  query: { a: "hello" },
-                }}
-              >
+              <Link to="/onecourse" state={{ courseId: course.id }}>
                 <Card
                   bg={"primary"}
                   key={course.id}
