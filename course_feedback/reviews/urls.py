@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', return_reviews)
+    path('', return_reviews),
+    path('update/', script),
 ]
