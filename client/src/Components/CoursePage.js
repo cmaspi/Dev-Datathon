@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, Navigate as Redirect, useLocation } from "react-router-dom";
-import Course from "./Course";
-import Reviews from "./Reviews";
 import { Container, Card, CardGroup, Row, Col } from "react-bootstrap";
 
 const CoursePage = () => {
@@ -34,42 +32,35 @@ const CoursePage = () => {
   return (
     <>
       <Row xs={1} md={6} className="g-4">
-
-
-      {coursesList.map((course) => {
-        return (
-          <>
+        {coursesList.map((course) => {
+          return (
+            <>
               <Col>
-            <Container
-              key={course.id}
-              style={{textDecoration:'none'}}
-            >
-              <Link
-                to={`/courses/${course.id}`}
-                state={{ courseId: course.id }}
-              >
-                <Card
-                  bg={"primary"}
-                  key={course.id}
-                  text={"dark"}
-                  style={{ width: "16rem", cursor: "pointer" }}
-                  className="mb-2"
-                >
-                  <Card.Header>{course.code}</Card.Header>
-                  <Card.Body>
-                    <Card.Title>{course.name} </Card.Title>
-                    <Card.Text>
-                      {course.offering}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Container>
-                  </Col>
-          </>
-        );
-      })}
-         </Row>
+                <Container key={course.id} style={{ textDecoration: "none" }}>
+                  <Link
+                    to={`/courses/${course.id}`}
+                    state={{ courseId: course.id }}
+                  >
+                    <Card
+                      bg={"primary"}
+                      key={course.id}
+                      text={"dark"}
+                      style={{ width: "16rem", cursor: "pointer" }}
+                      className="mb-2"
+                    >
+                      <Card.Header>{course.code}</Card.Header>
+                      <Card.Body>
+                        <Card.Title>{course.name} </Card.Title>
+                        <Card.Text>{course.offering}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Link>
+                </Container>
+              </Col>
+            </>
+          );
+        })}
+      </Row>
     </>
   );
 };

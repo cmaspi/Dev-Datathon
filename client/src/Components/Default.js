@@ -1,18 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Navigate as Redirect } from "react-router-dom";
 
 import Login from "./Login";
 
 const Default = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  if (isLoggedIn) {
-    console.log("Inside Default ", localStorage.getItem("tokenId"));
+  const [userStat, setUserStat] = useState({ loggedIn: false, present: false });
+
+  console.log("In default.js", userStat);
+  if (userStat.loggedIn) {
+    // if (userStat.present) {
+    console.log("Inside Default ", localStorage.getItem("tokenId"), userStat);
+    return <Redirect to="/signup" />;
     return <Redirect to="/courses" />;
+    // }
   } else {
     console.log("First render");
     return (
       <>
-        <Login setIsLoggedIn={setIsLoggedIn} />
+        <Login setUserStat={setUserStat} />
       </>
     );
   }

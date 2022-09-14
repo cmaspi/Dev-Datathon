@@ -19,6 +19,7 @@ import {
   Reviews,
 } from "./Components";
 import Course from "./Components/Course";
+import SignUp from "./Components/SignUp";
 
 function App() {
   useEffect(() => {
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/courses/:id" element={<Course />} />
           <Route exact path="/courses" element={<CoursePage />} />
           <Route path="/" element={<Default />} />
+          <Route path="/signup" element={<SignUp />} />
         </Switch>
       </Router>
       {/* <Footer /> */}

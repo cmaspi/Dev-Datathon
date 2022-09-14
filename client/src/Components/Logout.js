@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate as Redirect } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
 

@@ -1,7 +1,7 @@
 import { GoogleLogin } from "react-google-login";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setUserStat }) => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
 
   const handleSuccess = (res) => {
@@ -10,6 +10,9 @@ const Login = ({ setIsLoggedIn }) => {
     localStorage.setItem("name", res.profileObj.name);
     localStorage.setItem("email", res.profileObj.email);
     localStorage.setItem("tokenId", res.tokenId);
+    const robj = {};
+    robj.loggedIn = false;
+    robj.present = false;
 
     fetch(`${baseURL}user/check/`, {
       method: "POST",
@@ -20,13 +23,17 @@ const Login = ({ setIsLoggedIn }) => {
     })
       .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
       .then((obj) => {
-        console.log(obj);
+        console.log("From check api", obj);
+        robj.present = obj.body[0];
       })
       .catch(() => {
         console.log("Error signing in");
       });
     console.log("At end of handleSuccess");
-    setIsLoggedIn(true);
+
+    robj.loggedIn = true;
+    console.log(robj);
+    setUserStat(robj);
     // return <Redirect to="/home" />
   };
 
