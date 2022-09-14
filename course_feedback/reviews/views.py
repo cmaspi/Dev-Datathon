@@ -16,9 +16,10 @@ from google.oauth2 import id_token
 @api_view(['POST'])
 def return_reviews(request):
     email = email_from_token(request.headers.get('Authorization'))
+    # email = request.POST.get('email')
     if student.objects.filter(email=email).exists():
-        course = course.objects.get(id=request.POST.get('id'))
-        reviews = course.course_review_set.all()
+        course_ = course.objects.get(id=request.POST.get('id'))
+        reviews = course_.course_review_set.all()
         serializer = Review_serializer(reviews, many=True)
         return Response(serializer.data)
     else:
