@@ -12,8 +12,8 @@ from user.models import student as s
 # Create your views here.
 @api_view(['POST'])
 def all_courses(request):
-    # email = email_from_token(request.headers.get('Authorization'))
-    email = request.POST.get('email')
+    email = email_from_token(request.headers.get('Authorization'))
+    # email = request.POST.get('email')
     if s.objects.filter(email=email).exists():
         tmp = course.objects.all()
         serializer = course_serializer(tmp, many=True)
