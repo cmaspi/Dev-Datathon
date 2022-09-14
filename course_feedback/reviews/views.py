@@ -15,8 +15,8 @@ from google.oauth2 import id_token
 # Create your views here.
 @api_view(['POST'])
 def return_reviews(request):
-    email = email_from_token(request.headers.get('Authorization'))
-    # email = request.POST.get('email')
+    # email = email_from_token(request.headers.get('Authorization'))
+    email = request.POST.get('email')
     if student.objects.filter(email=email).exists():
         course_ = course.objects.get(id=request.POST.get('id'))
         reviews = course_.course_review_set.all()
