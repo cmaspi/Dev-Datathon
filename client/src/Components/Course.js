@@ -12,7 +12,7 @@ const Course = () => {
 
   return (
     <>
-        <Container style={{display: 'center'}}>
+        <Container style={{display: 'center', width: '800px'}}>
             <Summary courseId={location.state.courseId} />
 
         <h3>Reviews</h3>

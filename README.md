@@ -38,4 +38,4 @@ The user needs to submit their 'view my courses' HTML page from AIMS portal. A b
 The reviews are summarized using our summarizer api which runs on Uvicorn server. The requests are handled using the `fastApi`. The summarizer is a NLP model which uses `t5-small` model and `tensorflow` framework.
 
 ## For testing purposes
-For testing purposes, the tester is requested to contact the developer to register themselves on the backend. User signup has not been implemented on frontend. Thus this step is required.
+For testing purposes, the tester is requested to contact the developer to register themselves on the backend. User signup has not been implemented on frontend. Thus this step is required. Currently, reviews have been added only for the course AI3000: Reinforcement Learning. Please click on that to see reviews.
