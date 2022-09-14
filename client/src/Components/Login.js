@@ -1,10 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
 import { GoogleLogin } from "react-google-login";
-import { Navigate as Redirect } from "react-router-dom";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { refreshTokenSetup } from "../refreshToken";
-import CoursePage from "./CoursePage";
-import Details from "./Details";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
 const Login = ({ setIsLoggedIn }) => {
   const baseURL = process.env.REACT_APP_API_BASEURL;
@@ -12,15 +7,10 @@ const Login = ({ setIsLoggedIn }) => {
   const handleSuccess = (res) => {
     console.log("Login successfull! ", res.profileObj, res.tokenId);
 
-    // userContext.login(res.profileObj.name, res.profileObj.email, res.tokenId);
-
     localStorage.setItem("name", res.profileObj.name);
     localStorage.setItem("email", res.profileObj.email);
     localStorage.setItem("tokenId", res.tokenId);
-    // refreshTokenSetup(res);
 
-    // console.log(res.tokenId);
-    // setOnDone(true);
     fetch(`${baseURL}user/check/`, {
       method: "POST",
       headers: {
@@ -64,10 +54,6 @@ const Login = ({ setIsLoggedIn }) => {
           </Col>
         </Row>
       }
-
-      {/* {localStorage.getItem('tokenId') && !localStorage.getItem('exists') &&
-        <Details />
-      } */}
     </Container>
   );
 };
