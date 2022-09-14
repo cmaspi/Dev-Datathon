@@ -39,15 +39,15 @@ def populate(file, st):
                 if not c.objects.filter(code=CourseCode, offering=Duration).exists():
                     course_ = c(name=CourseName, prof=instructor, code=CourseCode, offering=Duration)
                     course_.save()
+                else:
+                    course_ = c.objects.get(code=CourseCode, offering=Duration)
 
                 # for grades population
                 dic = {"A+": 10, "A": 10, "A-": 9, "B": 8, "B-": 7, "C": 6, "C-": 5, "D": 4, "FR": 0}
                 if grade in dic:
                     grade = dic[grade]
-                else:
-                    grade = None
-                grade_ = g(student=st, course=course_, grade=grade)
-                grade_.save()
+                    grade_ = g(student=st, course=course_, grade=grade)
+                    grade_.save()
 
     # f.close()
 
