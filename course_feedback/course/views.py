@@ -24,8 +24,8 @@ def all_courses(request):
 
 @api_view(['POST'])
 def stuff(request):
-    # email = email_from_token(request.headers.get('Authorization'))
-    email = request.POST.get('email')
+    email = email_from_token(request.headers.get('Authorization'))
+    # email = request.POST.get('email')
     if s.objects.filter(email=email).exists():
         tmp = course.objects.get(id=request.POST.get('id'))
         serializer = summary_grade_serializer(tmp)
