@@ -21,9 +21,18 @@ Do you wonder which LA courses should you take so that you would get a good grad
 
 That's where we come in!
 
-Students can register on the website and post reviews about the course they have taken. To ensure that a student writes reviews only to the courses which they have taken we require students to upload the html file from `view from courses` section in the [AIMS](https://aims.iith.ac.in/aims/) portal. Each student can post atmost 1 review per course. The website also allows users to upvote or downvote the reviews posted by other people, this is done to ensure that reviews that resonate with more people appear on top. Since there can be quite a lot of reviews, to save time of our users we summarize the top 10 reviews. Though the summarized review is updated only once every fifteen days.
+Students can register on the website and post reviews about the course they have taken. In order to provide the users with statistics such as median grade, we require students to upload the html file from `view from courses` section in the [AIMS](https://aims.iith.ac.in/aims/) portal. We summarize all the reviews submitted by our community as a single review and display it separately. The summary is regenerated after every 15 days using a NLP summarizer.
 
 ## Your Privacy matters!
 To ensure that our users aren't penalized for being honest, we don't display the names/roll numbers of users along with the review.
 
+## About the Project (Technical Aspects)
+This project uses a `react` front-end, `django` backend with `sqlite3` database and hugging-face `transformers` library for text-summarization.
 
+The user is required to login to the website which is done by `OAuth`, the email used to login is limited to organization, only institute email ids will be accepted while logging in.
+
+The user needs to submit their 'view my courses' HTML page from AIMS portal. A backend API extracts all the relevant information from this page using `Beautiful Soup`. It then populates the data such as the courses taken by this user and the grade obtained in that course to the database.
+
+<!-- write about other APIs -->
+
+The top ten reviews are summarized using our summarizer api which runs on Uvicorn server. The requests are handled using the `fastApi`. The summarizer is a NLP model which uses `t5-small` model and `tensorflow` framework.
