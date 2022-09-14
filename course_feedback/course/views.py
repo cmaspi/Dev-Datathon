@@ -18,6 +18,8 @@ def all_courses(request):
         tmp = course.objects.all()
         serializer = course_serializer(tmp, many=True)
         return Response(serializer.data)
+    else:
+        return Response({1})
 
 
 def email_from_token(token):
