@@ -44,11 +44,11 @@ def return_top_reviews(request):
     reviews = course.course_review_set.all()
     serializer = Review_serializer(reviews, many=True)
 
-    sorted(serializer.data,key=lambda k: (k['upvoters_count']))
+    sorted(serializer.data,key=lambda k: (-k['upvoters_count']))
     i=0
     concat_review=''
     while(i<10 and i<len(serializer.data)):
-        concat_review+=serializer.data[i]['review']
+        concat_review+=(serializer.data[i]['review']+". ")
         i+=1
 
     return concat_review
