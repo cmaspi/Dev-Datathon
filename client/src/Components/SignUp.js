@@ -1,58 +1,57 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React, { useState } from "react";
 
-const SignUp = () => {
+export default function FileUploadPage() {
   const baseURL = process.env.REACT_APP_API_BASEURL;
 
-  const onSubmit = () => {
-    console.log("Upload File");
+  const [selectedFile, setSelectedFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
 
-    const token = localStorage.getItem("tokenId");
+  const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setSelectedFile(true);
+  };
+
+  const handleSubmission = () => {
+    const formData = new FormData();
+    const token = localStorage.getItem("token");
+    formData.append("File", selectedFile);
+
     fetch(`${baseURL}user/signup/`, {
       method: "POST",
+      body: formData,
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
-    <>
-      <h3>Sign Up</h3>
-      <Form onSubmit={onSubmit()}>
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-          <Form.Label column sm="2">
-            Email
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              plaintext
-              readOnly
-              defaultValue={localStorage.getItem("email")}
-            />
-          </Col>
-        </Form.Group>
-
-        <Form.Group controlId="formFileLg" className="mb-3">
-          <Form.Label>AIMS HTML File </Form.Label>
-          <Form.Control type="file" size="lg" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </>
+    <div>
+      <input type="file" name="file" onChange={changeHandler} />
+      {selectedFile ? (
+        <div>
+          <p>Filename: {selectedFile.name}</p>
+          <p>Filetype: {selectedFile.type}</p>
+          <p>Size in bytes: {selectedFile.size}</p>
+          <p>
+            lastModifiedDate:{" "}
+            {selectedFile.lastModifiedDate.toLocaleDateString()}
+          </p>
+        </div>
+      ) : (
+        <p>Select a file to show details</p>
+      )}
+      <div>
+        <button onClick={handleSubmission}>Submit</button>
+      </div>
+    </div>
   );
-};
-
-export default SignUp;
+}

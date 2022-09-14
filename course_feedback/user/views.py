@@ -1,3 +1,6 @@
+import json
+from grades.models import grade as g
+from course.models import course as c
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from .models import student
@@ -9,9 +12,6 @@ import sys
 from bs4 import BeautifulSoup
 
 sys.path.append("../")
-from course.models import course as c
-from grades.models import grade as g
-import json
 
 
 # Create your views here.
@@ -26,9 +26,12 @@ def populate(file, st):
             if check is not None:
                 Duration = check.text
             else:
-                CourseCode = course.find('span', {'class': 'col1'}).text.strip()
-                CourseName = course.find('span', {'class': 'col2'}).text.strip()
-                instructor = course.find('span', {'class': 'col7'}).text.strip()
+                CourseCode = course.find(
+                    'span', {'class': 'col1'}).text.strip()
+                CourseName = course.find(
+                    'span', {'class': 'col2'}).text.strip()
+                instructor = course.find(
+                    'span', {'class': 'col7'}).text.strip()
                 grade = course.find('span', {'class': 'col8'}).text.strip()
                 # temporary
                 '''
@@ -38,13 +41,15 @@ def populate(file, st):
 
                 # for course population
                 if not c.objects.filter(code=CourseCode, offering=Duration).exists():
-                    course_ = c(name=CourseName, prof=instructor, code=CourseCode, offering=Duration)
+                    course_ = c(name=CourseName, prof=instructor,
+                                code=CourseCode, offering=Duration)
                     course_.save()
                 else:
                     course_ = c.objects.get(code=CourseCode, offering=Duration)
 
                 # for grades population
-                dic = {"A+": 10, "A": 10, "A-": 9, "B": 8, "B-": 7, "C": 6, "C-": 5, "D": 4, "FR": 0}
+                dic = {"A+": 10, "A": 10, "A-": 9, "B": 8,
+                       "B-": 7, "C": 6, "C-": 5, "D": 4, "FR": 0}
                 if grade in dic:
                     grade = dic[grade]
                     grade_ = g(student=st, course=course_, grade=grade)
@@ -71,6 +76,8 @@ def signup(request):
         # email = request.POST.get('email')
         # request_body = json.loads(request.body.decode('utf-8'))
         # grade_card = request_body['grade_card']
+        print(email)
+        print(request.POST)
         grade_card = request.FILES['grade_card']
         user = student(email=email, grade_card=grade_card)
         user.save()
