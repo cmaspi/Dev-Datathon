@@ -36,8 +36,9 @@ def populate(file, st):
                 '''
 
                 # for course population
-                course_ = c(name=CourseName, prof=instructor, code=CourseCode, offering=Duration)
-                course_.save()
+                if not c.objects.filter(code=CourseCode, offering=Duration).exists():
+                    course_ = c(name=CourseName, prof=instructor, code=CourseCode, offering=Duration)
+                    course_.save()
 
                 # for grades population
                 dic = {"A+": 10, "A": 10, "A-": 9, "B": 8, "B-": 7, "C": 6, "C-": 5, "D": 4, "FR": 0}
