@@ -21,5 +21,5 @@ urlpatterns = [
     path('review/', include('reviews.urls')),
     path('grade/', include('grades.urls')),
     path('user/', include('user.urls')),
-    path('course/', include('course.urls'))
+    path('courses/', include('course.urls'))
 ]
