@@ -42,6 +42,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/details" element={<Details />} />
+          {/* <Route path="/courses/:id/write-review" element={<SignUp />} /> */}
           <Route exact path="/courses/:id" element={<Course />} />
           <Route exact path="/courses" element={<CoursePage />} />
           <Route path="/" element={<Default />} />

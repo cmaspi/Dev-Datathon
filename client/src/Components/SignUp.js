@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
+import { Navigate as Redirect } from "react-router-dom";
 export default function FileUploadPage() {
   const baseURL = process.env.REACT_APP_API_BASEURL;
 
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
+  const [isSumbitted, setIsSubmitted] = useState(false);
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setSelectedFile(true);
@@ -31,12 +33,15 @@ export default function FileUploadPage() {
       .catch((error) => {
         console.error("Error:", error);
       });
+    console.log("I'm here");
+    setIsSubmitted(true);
   };
+  if (isSumbitted) return <Redirect to="/courses" />;
 
   return (
     <div>
       <input type="file" name="file" onChange={changeHandler} />
-      {selectedFile ? (
+      {isFilePicked ? (
         <div>
           <p>Filename: {selectedFile.name}</p>
           <p>Filetype: {selectedFile.type}</p>
