@@ -4,7 +4,7 @@ import { Navigate as Redirect } from "react-router-dom";
 export default function FileUploadPage() {
   const baseURL = process.env.REACT_APP_API_BASEURL;
 
-  // const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
 
@@ -37,19 +37,16 @@ export default function FileUploadPage() {
         console.error("Error:", error);
       });
     console.log("I'm here");
-    // setIsSubmitted(true);
+    setIsSubmitted(true);
   };
-  // if (isSubmitted) return <Redirect to="/courses" />;
+  if (isSubmitted) return <Redirect to="/courses" />;
 
   return (
     <div>
+        <h2>Signup</h2>
         <p>Upload AIMS HTML File.</p>
         <input id="file" type="file" onChange={handleSubmit}></input>
         <input type="submit"></input>
-        {/*<form method="POST" encType="multipart/form-data" action="http://localhost:8000/user/signup/">*/}
-        {/*  <input id="file" type="file"></input>*/}
-        {/*  <input type="submit" value="upload"></input>*/}
-        {/*</form>*/}
     </div>
   );
 }
