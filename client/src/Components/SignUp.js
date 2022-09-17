@@ -4,26 +4,29 @@ import { Navigate as Redirect } from "react-router-dom";
 export default function FileUploadPage() {
   const baseURL = process.env.REACT_APP_API_BASEURL;
 
-  const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+  // const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [isSumbitted, setIsSubmitted] = useState(false);
-  const changeHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
-    setSelectedFile(true);
-  };
+  const handleSubmit = (event) => {
 
-  const handleSubmission = () => {
+    event.preventDefault();
+    console.log(event.target.files);
+    console.log(event.target.files[0]);
+
     const formData = new FormData();
-    const token = localStorage.getItem("token");
-    formData.append("File", selectedFile);
+    formData.append("grade_card", event.target.files[0]);
+    // formData.append("ab", "cd");
+    for (var [key, value] of formData.entries()) {
+     console.log(key, value);
+    }
+    const token = localStorage.getItem("tokenId");
+    console.log(formData);
 
     fetch(`${baseURL}user/signup/`, {
       method: "POST",
       body: formData,
       headers: {
         Authorization: token,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     })
       .then((response) => response.json())
@@ -34,29 +37,14 @@ export default function FileUploadPage() {
         console.error("Error:", error);
       });
     console.log("I'm here");
-    setIsSubmitted(true);
+    // setIsSubmitted(true);
   };
-  if (isSumbitted) return <Redirect to="/courses" />;
+  // if (isSubmitted) return <Redirect to="/courses" />;
 
   return (
     <div>
-      <input type="file" name="file" onChange={changeHandler} />
-      {isFilePicked ? (
-        <div>
-          <p>Filename: {selectedFile.name}</p>
-          <p>Filetype: {selectedFile.type}</p>
-          <p>Size in bytes: {selectedFile.size}</p>
-          <p>
-            lastModifiedDate:{" "}
-            {selectedFile.lastModifiedDate.toLocaleDateString()}
-          </p>
-        </div>
-      ) : (
-        <p>Select a file to show details</p>
-      )}
-      <div>
-        <button onClick={handleSubmission}>Submit</button>
-      </div>
+        <input id="file" type="file" onChange={handleSubmit}></input>
+        <input type="submit"></input>
     </div>
   );
 }

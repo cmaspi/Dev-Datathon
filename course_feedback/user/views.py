@@ -7,6 +7,8 @@ from .models import student
 from rest_framework.response import Response
 from google.oauth2 import id_token
 from google.auth.transport import requests
+import json
+from .forms import new_form
 
 import sys
 from bs4 import BeautifulSoup
@@ -76,9 +78,18 @@ def signup(request):
         # email = request.POST.get('email')
         # request_body = json.loads(request.body.decode('utf-8'))
         # grade_card = request_body['grade_card']
-        print(email)
-        print(request.POST)
-        grade_card = request.FILES['grade_card']
+        print(request)
+        form = new_form(request.FILES)
+        if form.is_valid():
+            print("boogy")
+        else:
+            print("woogy")
+        grade_card = form.file
+        # request_data = json.loads(request.body.decode('utf-8'))
+        # print(request_data)
+        # print(request.data['file'])
+        # print("hahaha", request.data)
+        # grade_card = request.FILES['grade_card']
         user = student(email=email, grade_card=grade_card)
         user.save()
         populate(grade_card, user)
