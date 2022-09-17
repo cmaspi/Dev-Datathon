@@ -26,7 +26,7 @@ export default function FileUploadPage() {
       body: formData,
       headers: {
         Authorization: token,
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
       },
     })
       .then((response) => response.json())
@@ -43,8 +43,13 @@ export default function FileUploadPage() {
 
   return (
     <div>
+        <p>Upload AIMS HTML File.</p>
         <input id="file" type="file" onChange={handleSubmit}></input>
         <input type="submit"></input>
+        {/*<form method="POST" encType="multipart/form-data" action="http://localhost:8000/user/signup/">*/}
+        {/*  <input id="file" type="file"></input>*/}
+        {/*  <input type="submit" value="upload"></input>*/}
+        {/*</form>*/}
     </div>
   );
 }
